@@ -28,11 +28,6 @@
   
           <button type="submit" class="w-full h-12 bg-blue-500 text-white rounded-md">Register</button>
         </form>
-  
-        <p class="mt-4 text-sm">
-          Already have an account? 
-          <router-link to="/signin" class="text-blue-500">Sign In</router-link>
-        </p>
       </div>
     </div>
   </template>
@@ -40,6 +35,7 @@
   <script setup>
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
+
   
   const email = ref('');
   const password = ref('');
@@ -48,16 +44,39 @@
   const showConfirmPassword = ref(false);
   
   const register = () => {
-    if (password === confirmPassword) {
-      // Your registration logic goes here
-      console.log('Registering...');
-      // Example: Redirect to home page after registering
-      useRouter().push('/');
-    } else {
-      console.log('Passwords do not match.');
-      // You can show an error message or handle it as needed
-    }
-  };
+  const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+  const isUsernameTaken = existingUsers.some((user) => user.email === email.value);
+
+  if (isUsernameTaken) {
+    alert('Username is already taken. Please choose another one.');
+  } else {
+    existingUsers.push({ email: email.value, password: password.value });
+
+    localStorage.setItem('users', JSON.stringify(existingUsers));
+    console.log(existingUsers)
+
+    // Reset the form
+    email.value = '';
+    password.value = '';
+
+    alert('Registration successful!');
+  }
+};
+
+//   const register = async() => {
+//     if (password.value === confirmPassword.value) {
+//       // Your registration logic goes here
+//       console.log('Registering...');
+    
+
+//       // Example: Redirect to home page after registering
+//     //   useRouter().push('/');
+//     } else {
+//       console.log('Passwords do not match.');
+//       // You can show an error message or handle it as needed
+//     }
+//   };
   
   const togglePasswordVisibility = (field) => {
     if (field === 'password') {
