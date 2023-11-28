@@ -17,11 +17,16 @@
         <RouterLink to="/contact">Contact</RouterLink>
       </div>
       <button @click="goToLogin" class="bg-blue-500 rounded-lg px-4 py-2 text-white">Login</button>
-
     </nav>
   </header>
 </template>
   
-  <script setup>
-  import { RouterLink } from "vue-router";
-  </script>
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const goToLogin = () => {
+  // Assuming you have a route named 'login'
+  useRouter().push('/login');
+};
+</script>
