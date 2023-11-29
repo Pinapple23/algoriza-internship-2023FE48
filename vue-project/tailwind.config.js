@@ -14,8 +14,6 @@ module.exports = {
       center: true,
     },
     screens: {
-      sm: "640px",
-      md: "768px",
     },
   },
   plugins: [],
