@@ -13,7 +13,14 @@
             <p>Plan and book our perfect trip with expert advice, travel tips, destination information and  inspiration from us</p>
           </div>
        </div>
-       <SearchForm/>
+       <!-- <SearchForm/> -->
+       <SearchForm
+          :initialDestination="initialDestination"
+          :initialCheckinDate="initialCheckinDate"
+          :initialCheckoutDate="initialCheckoutDate"
+          :initialGuests="initialGuests"
+          :initialRooms="initialRooms"
+        />
  
           <!-- Rectangle with text -->
           <div class=" ml-2 left-100 top-662 w-full h-16 bg-yellow-100 rounded-lg p-4">
@@ -111,6 +118,13 @@ import SearchForm from "../components/SearchForm.vue";
 
 const isAuthenticated = ref(false);
 const userEmail = ref('');
+
+const initialDestination = ref('where are going?');
+const initialCheckinDate = ref('checkin date'); // Set to your desired initial value
+const initialCheckoutDate = ref('check out'); // Set to your desired initial value
+const initialGuests = ref(); // Set to your desired initial value
+const initialRooms = ref();
+
 
 onMounted(() => {  // Check if the token is valid when the component is mounted
   checkTokenValidity();
