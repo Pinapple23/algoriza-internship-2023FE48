@@ -119,9 +119,9 @@ import SearchForm from "../components/SearchForm.vue";
 const isAuthenticated = ref(false);
 const userEmail = ref('');
 
-const initialDestination = ref('where are going?');
-const initialCheckinDate = ref('checkin date'); // Set to your desired initial value
-const initialCheckoutDate = ref('check out'); // Set to your desired initial value
+const initialDestination = ref('');
+const initialCheckinDate = ref(''); // Set to your desired initial value
+const initialCheckoutDate = ref(''); // Set to your desired initial value
 const initialGuests = ref(); // Set to your desired initial value
 const initialRooms = ref();
 

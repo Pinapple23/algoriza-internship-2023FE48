@@ -1,6 +1,5 @@
 <template>
-   
-   <form @submit.prevent="search" class="grid gap-16 grid-cols-6 search-container p-4">
+   <form @submit.prevent="search" class="grid gap-16 grid-cols-6 lg:grid-cols-4 md:grid-col-3 p-4">
     <div class="relative">
       <input
         v-model="searchQuery"
@@ -81,7 +80,7 @@
 
 // Set the initial search data on component mount
 onMounted(() => {
-  selectedDestination.value = props.initialDestination;
+  searchQuery.value = props.initialDestination;
   checkinDate.value = props.initialCheckinDate;
   checkoutDate.value = props.initialCheckoutDate;
   guests.value = props.initialGuests;
@@ -89,8 +88,14 @@ onMounted(() => {
 });
 
 // Update search data when props change
+watch(() => props.initialDestination, (newValue) => {
+  searchQuery.value = newValue;
+  console.log(searchQuery.value);
+});
+
+// Update search data when props change
 watch([props.initialDestination, props.initialCheckinDate, props.initialCheckoutDate, props.initialGuests, props.initialRooms], () => {
-  selectedDestination.value = props.initialDestination;
+  searchQuery.value = props.initialDestination;
   checkinDate.value = props.initialCheckinDate;
   checkoutDate.value = props.initialCheckoutDate;
   guests.value = props.initialGuests;
@@ -105,7 +110,7 @@ const fetchDestinationOptions = async () => {
     url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination',
     params: { query: searchQuery.value },
     headers: {
-      'X-RapidAPI-Key': '86d220005bmsh4d70ed525fd2dd1p169ae5jsn3aa33ad25eed',
+      'X-RapidAPI-Key': 'e9f543ecb9msh467c6d3dfafa0b1p1445cajsna03fbaad4ef4',
       'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
     }
   };
@@ -114,10 +119,8 @@ const fetchDestinationOptions = async () => {
     const response = await axios.request(options);
     destinationOptions.value = response.data.data.map(item => ({
       id: item.dest_id,
-      label: `${item.name}, ${item.city_name}, ${item.region}, ${item.country}`,
+      label: `${item.city_name}, ${item.region}, ${item.country}`,
     }));
-
-    console.log(destinationOptions.value);
   } catch (error) {
     console.error(error);
     showError('Error fetching destination options');
@@ -144,8 +147,7 @@ const selectOption = (option) => {
   searchQuery.value = option.label;
   selectedDestination.value =option.label;
   selectedDestinationId.value = option.id;
-  console.log(searchQuery.value);
-  console.log("selectedDestination.value" ,selectedDestination.value)
+  console.log("selectedDestination.value :" ,selectedDestination.value)
   destinationOptions.value = [];
 };
 
@@ -170,24 +172,25 @@ const search = async () => {
         currency_code: 'AED'
       },
       headers: {
-        'X-RapidAPI-Key': '86d220005bmsh4d70ed525fd2dd1p169ae5jsn3aa33ad25eed',
+        'X-RapidAPI-Key': 'e9f543ecb9msh467c6d3dfafa0b1p1445cajsna03fbaad4ef4',
         'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
       }
     };
 
     const response = await axios.request(options);
+    if (response.data.data.hotels.length > 0){
+      router.push({
+        name: 'search-results',
+        query: {
+          destination: selectedDestination.value,
+          checkin: checkinDate.value,
+          checkout: checkoutDate.value,
+          guests: guests.value,
+          rooms: rooms.value,
+        },
+      });
 
-    router.push({
-      name: 'search-results',
-      query: {
-        destination: selectedDestination.value,
-        destinationId: selectedDestinationId.value,
-        checkin: checkinDate.value,
-        checkout: checkoutDate.value,
-        guests: guests.value,
-        rooms: rooms.value,
-      },
-    });
+    }
   }catch (error) {
     console.error(error);
     showError('Error performing search');
