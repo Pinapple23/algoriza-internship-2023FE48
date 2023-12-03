@@ -110,7 +110,7 @@ const fetchDestinationOptions = async () => {
     url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination',
     params: { query: searchQuery.value },
     headers: {
-    'X-RapidAPI-Key': '619bb2afdbmsh25e156453594afdp1cc64cjsn0d5ddb8df355',
+    'X-RapidAPI-Key': '123ef2e7d7mshd1a3a9481e2c466p1bf753jsn67db952e3926',
     'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
   }
   };
@@ -172,7 +172,7 @@ const search = async () => {
         currency_code: 'USD'
       },
       headers: {
-    'X-RapidAPI-Key': '619bb2afdbmsh25e156453594afdp1cc64cjsn0d5ddb8df355',
+    'X-RapidAPI-Key': '123ef2e7d7mshd1a3a9481e2c466p1bf753jsn67db952e3926',
     'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
   }
     };

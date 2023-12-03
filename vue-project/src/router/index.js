@@ -35,7 +35,6 @@ const router = createRouter({
       path: '/reserve-room/:id',
       name: 'reserve-room',
       component: ReserveRoom,
-      params:true
     },
     
     

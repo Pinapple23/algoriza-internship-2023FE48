@@ -187,7 +187,7 @@ const fetchSortOptions = async () => {
         room_qty: route.query.rooms,
       },
       headers: {
-        'X-RapidAPI-Key': '619bb2afdbmsh25e156453594afdp1cc64cjsn0d5ddb8df355',
+        'X-RapidAPI-Key': '123ef2e7d7mshd1a3a9481e2c466p1bf753jsn67db952e3926',
         'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
       }
     };
@@ -234,7 +234,7 @@ const fetchSearchResults = async () => {
         price_max: budgetMax.value
       },
       headers: {
-        'X-RapidAPI-Key': '619bb2afdbmsh25e156453594afdp1cc64cjsn0d5ddb8df355',
+        'X-RapidAPI-Key': '123ef2e7d7mshd1a3a9481e2c466p1bf753jsn67db952e3926',
         'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
       }
     };
