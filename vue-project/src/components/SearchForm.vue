@@ -110,9 +110,9 @@ const fetchDestinationOptions = async () => {
     url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination',
     params: { query: searchQuery.value },
     headers: {
-      'X-RapidAPI-Key': 'e9f543ecb9msh467c6d3dfafa0b1p1445cajsna03fbaad4ef4',
-      'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
-    }
+    'X-RapidAPI-Key': '619bb2afdbmsh25e156453594afdp1cc64cjsn0d5ddb8df355',
+    'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+  }
   };
 
   try {
@@ -169,12 +169,12 @@ const search = async () => {
         room_qty: rooms.value,
         page_number: '1',
         languagecode: 'en-us',
-        currency_code: 'AED'
+        currency_code: 'USD'
       },
       headers: {
-        'X-RapidAPI-Key': 'e9f543ecb9msh467c6d3dfafa0b1p1445cajsna03fbaad4ef4',
-        'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
-      }
+    'X-RapidAPI-Key': '619bb2afdbmsh25e156453594afdp1cc64cjsn0d5ddb8df355',
+    'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+  }
     };
 
     const response = await axios.request(options);
@@ -183,6 +183,7 @@ const search = async () => {
         name: 'search-results',
         query: {
           destination: selectedDestination.value,
+          destinationId:selectedDestinationId.value,
           checkin: checkinDate.value,
           checkout: checkoutDate.value,
           guests: guests.value,

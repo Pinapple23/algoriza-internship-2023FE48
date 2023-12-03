@@ -14,13 +14,7 @@
           </div>
        </div>
        <!-- <SearchForm/> -->
-       <SearchForm
-          :initialDestination="initialDestination"
-          :initialCheckinDate="initialCheckinDate"
-          :initialCheckoutDate="initialCheckoutDate"
-          :initialGuests="initialGuests"
-          :initialRooms="initialRooms"
-        />
+       <SearchForm/>
  
           <!-- Rectangle with text -->
           <div class=" ml-2 left-100 top-662 w-full h-16 bg-yellow-100 rounded-lg p-4">

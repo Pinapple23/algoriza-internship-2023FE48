@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 bg-white shadow-lg">
+  <header class="sticky top-0 bg-white">
     <nav class="container flex justify-between items-center gap-4 text-black py-6">
       <div class="flex items-center gap-3">
         <RouterLink :to="{ name: 'home' }">
